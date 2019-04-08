@@ -27,6 +27,9 @@
 
 #include "log4cpp/LogLevels.h"
 
+/**
+* @brief log4cpp header-only library namespace
+*/
 namespace log4cpp
 {
 
@@ -41,7 +44,11 @@ public:
     /**
      * Callback method for log messages
      *
-     * @param entry the log message to handle
+     * @param module ModuleId of the logger
+     * @param id string id of the logger
+     * @param level bitfield LogLevel of the logger
+     * @param location location in the source of the log call
+     * @param message message of the log call
      */
     virtual void log(ModuleId module, const char* id, LogLevel level, char const* location, char const* message) = 0;
 };

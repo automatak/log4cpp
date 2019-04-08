@@ -54,10 +54,10 @@ public:
     explicit ConsolePrettyPrinter(const Settings& settings = Settings()) : settings(settings)
     {}
 
-    virtual void log(log4cpp::ModuleId module, const char* id, log4cpp::LogLevel level, char const* location, char const* message) override
+    void log(log4cpp::ModuleId module, const char* id, log4cpp::LogLevel level, char const* location, char const* message) override
     {
-        auto now = std::chrono::high_resolution_clock::now();
-        auto millis = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()).count();
+        const auto now = std::chrono::high_resolution_clock::now();
+        const auto millis = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()).count();
 
         std::ostringstream oss;
 
