@@ -54,6 +54,11 @@ public:
         return LogLevel(value << 1);
     }
 
+    bool operator==(const LogLevel& other) const
+    {
+        return this->value == other.value;
+    }
+
     int32_t	value = 0;
 };
 
@@ -78,6 +83,11 @@ public:
     explicit LogLevels(int32_t levels) : levels(levels)
     {}
 
+    static LogLevels none()
+    {
+        return LogLevels(0);
+    }
+
     static LogLevels everything()
     {
         return LogLevels(~0);
@@ -86,6 +96,22 @@ public:
     inline bool is_set(const LogLevel& level) const
     {
         return (level.value & levels) != 0;
+    }
+
+    LogLevels operator~() const
+    {
+        return LogLevels(~this->levels);
+    }
+
+    LogLevels& operator|=(const LogLevel& other)
+    {
+        this->levels |= other.value;
+        return *this;
+    }
+
+    LogLevels operator|(const LogLevel& other) const
+    {
+        return LogLevels(this->levels | other.value);
     }
 
     LogLevels& operator|=(const LogLevels& other)
