@@ -83,6 +83,9 @@ public:
     explicit LogLevels(int32_t levels) : levels(levels)
     {}
 
+    LogLevels(LogLevel level) : levels(level.value)
+    {}
+
     static LogLevels none()
     {
         return LogLevels(0);
