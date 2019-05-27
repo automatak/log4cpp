@@ -42,14 +42,14 @@
 	logger.log(levels, LOCATION, message_buffer_some_name_no_conflict); } \
  
 #define SIMPLE_LOG_BLOCK(logger, levels, message) \
-		if(logger.is_enabled(levels)){ \
-			logger.log(levels, LOCATION, message); \
-		}
+	if(logger.is_enabled(levels)){ \
+		logger.log(levels, LOCATION, message); \
+	}
 
 #define SIMPLE_LOGGER_BLOCK(pLogger, levels, message) \
-		if(pLogger && pLogger->is_enabled(levels)){ \
-			pLogger->log(levels, LOCATION, message); \
-		}
+	if(pLogger && pLogger->is_enabled(levels)){ \
+		pLogger->log(levels, LOCATION, message); \
+	}
 
 #define FORMAT_LOG_BLOCK(logger, levels, format, ...) \
 	if(logger.is_enabled(levels)){ \
@@ -63,6 +63,11 @@
 		char message_buffer_some_name_no_conflict[log4cpp::max_log_entry_size]; \
 		SAFE_STRING_FORMAT(message_buffer_some_name_no_conflict, log4cpp::max_log_entry_size, format, ##__VA_ARGS__); \
 		pLogger->log(levels, LOCATION, message_buffer_some_name_no_conflict); \
+	}
+
+#define FORMAT_HEX_BLOCK(logger, levels, buffer, firstSize, otherSize) \
+	if (logger.is_enabled(levels)){ \
+		log4cpp::HexLogging::log(logger, levels, buffer, ' ', firstSize, otherSize); \
 	}
 
 #endif //LOG4CPP_LOGMACROS_H
