@@ -25,8 +25,6 @@
 #ifndef LOG4CPP_STRINGS_H
 #define LOG4CPP_STRINGS_H
 
-#include "ser4cpp/util/Uncopyable.h"
-
 #include <sstream>
 
 namespace log4cpp
@@ -35,7 +33,7 @@ namespace log4cpp
 /**
 * String manipulation
 */
-class Strings : ser4cpp::StaticOnly
+class Strings
 {
 public:
 	// Append anything together that can be used w/ ostringstream
